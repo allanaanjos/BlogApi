@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 using Blog.Data;
 using Blog.Models;
 using BlogApi.Extension;
@@ -6,6 +7,8 @@ using BlogApi.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SecureIdentity.Password;
+using System;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BlogApi.Controller
 {
@@ -70,10 +73,10 @@ namespace BlogApi.Controller
               .Include(x => x.Roles)
               .FirstOrDefaultAsync(x => x.Email == model.Email);
 
-            if(user == null)
-               return StatusCode(400, new ResultViewModel<string>("Usuário ou senha invalido!"));
-            
-            if(!PasswordHasher.Verify(user.PasswordHash, model.Password))
+            if (user == null)
+                return StatusCode(400, new ResultViewModel<string>("Usuário ou senha invalido!"));
+
+            if (!PasswordHasher.Verify(user.PasswordHash, model.Password))
                 return StatusCode(400, new ResultViewModel<string>("Usuário ou senha invalido!"));
 
             try
@@ -87,5 +90,45 @@ namespace BlogApi.Controller
             }
         }
 
+
+        [Authorize]
+        [HttpPost("v1/upload-image")]
+        public async Task<IActionResult> UploadImage(
+         [FromBody] UploadImageViewModel model,
+         [FromServices] BlogDataContext context)
+        {
+            var fileName = $"{Guid.NewGuid().ToString()}.jpg";
+            var data = new Regex(@"^data:image\/[a-z]+;base64,").Replace(model.Base64Image, "");
+            var Bytes = Convert.FromBase64String(data);
+
+            try
+            {
+                await System.IO.File.WriteAllBytesAsync($"wwwroot/image/{fileName}", Bytes);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new ResultViewModel<string>("05XE4 - Falha interna no servidor"));
+            }
+
+            var user = await context.Users.FirstOrDefaultAsync(x => x.Email == User.Identity.Name);
+
+            if (user == null)
+                return NotFound(new ResultViewModel<string>("05XE4 - Falha interna no servidor"));
+
+            
+           user.Image = $"http://localhost:0000/image/{fileName}";
+
+           try
+           {
+              context.Users.Update(user);
+              await context.SaveChangesAsync();
+           }
+           catch (Exception)
+           {
+              return StatusCode(500, new ResultViewModel<string>("05XE4 - Falha interna no servidor"));
+           }
+
+            return StatusCode(200, new ResultViewModel<string>("Imagem alterada com sucesso!!!"));
+        }
     }
 }

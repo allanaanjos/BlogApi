@@ -56,3 +56,15 @@ C:\temp2\BlogApi\obj\Debug\net6.0\BlogApi.genruntimeconfig.cache
 C:\temp2\BlogApi\obj\Debug\net6.0\ref\BlogApi.dll
 C:\temp2\BlogApi\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\temp2\BlogApi\bin\Debug\net6.0\SecureIdentity.dll
+C:\temp2\BlogApi\bin\Debug\net6.0\BouncyCastle.Cryptography.dll
+C:\temp2\BlogApi\bin\Debug\net6.0\MailKit.dll
+C:\temp2\BlogApi\bin\Debug\net6.0\MimeKit.dll
+C:\temp2\BlogApi\bin\Debug\net6.0\System.Formats.Asn1.dll
+C:\temp2\BlogApi\bin\Debug\net6.0\System.Security.Cryptography.Pkcs.dll
+C:\temp2\BlogApi\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.Pkcs.dll
+C:\temp2\BlogApi\bin\Debug\net6.0\Microsoft.OpenApi.dll
+C:\temp2\BlogApi\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\temp2\BlogApi\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\temp2\BlogApi\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\temp2\BlogApi\obj\Debug\net6.0\BlogApi.MvcApplicationPartsAssemblyInfo.cs
+C:\temp2\BlogApi\bin\Debug\net6.0\BlogApi.staticwebassets.runtime.json
