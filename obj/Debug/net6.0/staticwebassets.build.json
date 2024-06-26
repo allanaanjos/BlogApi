@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "/UGzKq7ehXPvH5GGaY8qQP31gFEdZmPceCNFNk2SutA=",
+  "Hash": "Jev/3VX07+lJwYV1+WcM4BH3s5mSG6UIzwUjiOrhwDs=",
   "Source": "BlogApi",
   "BasePath": "_content/BlogApi",
   "Mode": "Default",
@@ -15,5 +15,23 @@
       "Pattern": "**"
     }
   ],
-  "Assets": []
+  "Assets": [
+    {
+      "Identity": "C:\\temp2\\BlogApi\\wwwroot\\image\\b16237b7-de53-4ecb-a81a-ea691c8a438b.jpg",
+      "SourceId": "BlogApi",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\temp2\\BlogApi\\wwwroot\\",
+      "BasePath": "_content/BlogApi",
+      "RelativePath": "image/b16237b7-de53-4ecb-a81a-ea691c8a438b.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\image\\b16237b7-de53-4ecb-a81a-ea691c8a438b.jpg"
+    }
+  ]
 }

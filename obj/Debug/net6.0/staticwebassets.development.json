@@ -1,1 +1,1 @@
-{"ContentRoots":["C:\\temp2\\BlogApi\\wwwroot\\"],"Root":{"Children":null,"Asset":null,"Patterns":[{"ContentRootIndex":0,"Pattern":"**","Depth":0}]}}
+{"ContentRoots":["C:\\temp2\\BlogApi\\wwwroot\\"],"Root":{"Children":{"image":{"Children":{"b16237b7-de53-4ecb-a81a-ea691c8a438b.jpg":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"image/b16237b7-de53-4ecb-a81a-ea691c8a438b.jpg"},"Patterns":null}},"Asset":null,"Patterns":null}},"Asset":null,"Patterns":[{"ContentRootIndex":0,"Pattern":"**","Depth":0}]}}

@@ -1,4 +1,5 @@
 using System.Text;
+using System.Text.Json.Serialization;
 using Blog.Data;
 using BlogApi.JwtConfigure;
 using BlogApi.Services;
@@ -63,6 +64,9 @@ void configureMvc(WebApplicationBuilder builder)
    {
 
        options.SuppressModelStateInvalidFilter = true;
+   }).AddJsonOptions(x => {
+        x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+        x.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault;
    });
 
 }
