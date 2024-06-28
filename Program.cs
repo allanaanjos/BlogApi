@@ -60,6 +60,7 @@ void ConfigureAuthentication(WebApplicationBuilder builder)
 
 void configureMvc(WebApplicationBuilder builder)
 {
+    builder.Services.AddMemoryCache();
     builder.Services.AddControllers().ConfigureApiBehaviorOptions(options =>
    {
 

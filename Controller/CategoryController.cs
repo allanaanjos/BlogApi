@@ -4,6 +4,7 @@ using BlogApi.Extension;
 using BlogApi.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace BlogApi.Controller
 {
@@ -12,11 +13,17 @@ namespace BlogApi.Controller
     {
 
         [HttpGet("v1/categories")]
-        public async Task<IActionResult> GetAsync([FromServices] BlogDataContext context)
+        public async Task<IActionResult> GetAsync(
+            [FromServices] BlogDataContext context,
+            [FromServices] IMemoryCache cache)
         {
             try
             {
-                var Categories = await context.Categories.ToListAsync();
+                var Categories = cache.GetOrCreate("categoryCache", entry =>
+                {
+                    entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromHours(1);
+                    return GetCategories(context);
+                });
                 return Ok(new ResultViewModel<List<Category>>(Categories));
             }
             catch (Exception)
@@ -24,6 +31,9 @@ namespace BlogApi.Controller
                 return StatusCode(500, new ResultViewModel<List<Category>>("05XE1 - Falha interna no servidor"));
             }
         }
+
+        private List<Category> GetCategories(BlogDataContext context) =>
+             context.Categories.ToList();
 
         [HttpGet("v1/categories/{id:int}")]
         public async Task<IActionResult> GetByIdAsync(
@@ -53,7 +63,7 @@ namespace BlogApi.Controller
 
             try
             {
-                 if(!ModelState.IsValid)
+                if (!ModelState.IsValid)
                     return BadRequest(new ResultViewModel<Category>(ModelState.GetErros()));
 
                 var category = new Category
@@ -87,7 +97,7 @@ namespace BlogApi.Controller
         {
             try
             {
-                 if(!ModelState.IsValid)
+                if (!ModelState.IsValid)
                     return BadRequest(new ResultViewModel<Category>(ModelState.GetErros()));
 
                 var Category = await context.Categories.FirstOrDefaultAsync(x => x.Id == id);
